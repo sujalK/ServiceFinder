@@ -30,6 +30,7 @@ button {
 /* div: top-section */
 #top-section {
     background: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
+    color: #fff;
 }
 
 #top-section .top-section-container .top-nav {
