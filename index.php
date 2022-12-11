@@ -11,7 +11,7 @@
 
     <!-- Top section -->
     <section id="top-section">
-        <div class="container">
+        <div class="container top-section-container">
             <!-- top nav -->
             <div class="top-nav">
                 <!-- logo-container -->
