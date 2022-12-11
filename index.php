@@ -30,6 +30,37 @@
                     <a href="#">Register Now</a>
                 </div>
             </div>
+            <!-- center text container -->
+            <div class="center-text-container">
+                <p>It's simple and smart</p>
+                <h2 class="font-2">Search, Explore and Experience</h2>
+                <div class="service-and-companies">
+                    <div class="services">
+                        <div>
+                            <i class=""></i>
+                        </div>
+                        <p>2000,036 services</p>
+                    </div>
+                    <div class="companies">
+                        <div>
+                            <i class=""></i>
+                        </div>
+                        <p>9,914 Companies</p>
+                    </div>
+                </div>
+            </div>
+            <!-- search-form-container -->
+            <form action="" method="post" class="search-form">
+                <div class="form-group">
+                    <label for="keyword"><i class=""></i></label>
+                    <input type="text" name="keyword" id="keyword" placeholder="Search service here...">
+                </div>
+                <div class="form-group">
+                    <label for="place_entry"><i class=""></i></label>
+                    <input type="text" name="place_entry" id="place_entry" placeholder="Places to search...">
+                </div>
+                <input type="submit" value="Search">
+            </form>
         </div>
     </section>
     
