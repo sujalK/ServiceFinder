@@ -10,7 +10,7 @@
 <body>
 
     <!-- Top section -->
-    <section>
+    <section id="top-section">
         <div class="container">
             <!-- top nav -->
             <div class="top-nav">
