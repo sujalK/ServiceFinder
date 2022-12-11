@@ -27,3 +27,8 @@ button {
     padding: 1.25rem .75rem;
 }
 
+/* div: top-section */
+#top-section .top-section-container .top-nav {
+    display: flex;
+    justify-content: space-between;
+}
