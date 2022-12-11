@@ -36,6 +36,22 @@ button {
     padding: 1.25rem .75rem;
 }
 
+.logo-color {
+    color: rgb(91,181,67);
+}
+
+/* buttons */
+.register-now-btn {
+    border: 1px solid #fff;
+    padding: .75rem 2rem;
+    border-radius: 5px;
+}
+
+/* fonts */
+.font-2 {
+    font-size: 2.75rem;
+}
+
 /* div: top-section */
 #top-section {
     background: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
@@ -70,11 +86,41 @@ button {
     /* z-index: 1; */
 }
 
+#top-section .top-section-container .top-nav .center-navigation,
+#top-section .top-section-container .top-nav .right-buttons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
 #top-section .top-section-container .top-nav .center-navigation a,
 #top-section .top-section-container .top-nav .right-buttons a {
     color: #fff;
 }
 
+#top-section .top-section-container .top-nav .center-navigation a:hover {
+    color: rgb(91,181,67);
+}
+
 #top-section .top-section-container .center-text-container {
     margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#top-section .top-section-container .center-text-container .service-and-companies {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+#top-section .top-section-container .search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.75rem;
 }

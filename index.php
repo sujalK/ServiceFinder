@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +21,7 @@
             <div class="top-nav">
                 <!-- logo-container -->
                 <div class="logo-container">
-                    <h1>Find <span class="logo-color">Near Me</span></h1>
+                    <h1>Find<span class="logo-color">NearMe</span></h1>
                 </div>
                 <!-- center-navigation -->
                 <div class="center-navigation">
@@ -30,8 +32,8 @@
                 </div>
                 <!-- right-buttons -->
                 <div class="right-buttons">
-                    <a href="#">Log in</a>
-                    <a href="#">Register Now</a>
+                    <a href="#" class="login-btn">Log in</a>
+                    <a href="#" class="register-now-btn">Register Now</a>
                 </div>
             </div>
             <!-- center text container -->
