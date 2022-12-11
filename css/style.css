@@ -29,8 +29,7 @@ button {
 
 /* div: top-section */
 #top-section {
-    background: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
-    height: 100vh;
+    background-image: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
 }
 
 #top-section .top-section-container .top-nav {
