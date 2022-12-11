@@ -31,9 +31,41 @@ button {
 #top-section {
     background: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
     color: #fff;
+    height: 100vh;
+    z-index: -1;
+}
+
+#top-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#top-section .top-section-container {
+    position: relative;
+    z-index: 1000;
+    height: 100%;
+    z-index: 200;
 }
 
 #top-section .top-section-container .top-nav {
     display: flex;
     justify-content: space-between;
+    /* z-index: 1; */
+}
+
+#top-section .top-section-container .top-nav .center-navigation a,
+#top-section .top-section-container .top-nav .right-buttons a {
+    color: #fff;
+}
+
+#top-section .top-section-container .center-text-container {
+    margin-top: 7rem;
 }
