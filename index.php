@@ -57,18 +57,21 @@
             </div>
             <!-- search-form-container -->
             <form action="" method="post" class="search-form">
-                <div class="form-group">
-                    <label for="keyword"><i class=""></i></label>
+
+                <div class="form-group service-search">
+                    <label for="keyword"><i class="lnr lnr-pencil"></i></label>
                     <input type="text" name="keyword" id="keyword" placeholder="Search service here...">
                 </div>
-                <div class="form-group">
-                    <label for="place_entry"><i class=""></i></label>
-                    <input type="text" name="place_entry" id="place_entry" placeholder="Places to search...">
+                <div class="wrapper-form-group">
+                    <div class="form-group">
+                        <label for="place_entry"><i class="lnr lnr-location"></i></label>
+                        <input type="text" name="place_entry" id="place_entry" placeholder="Place/City search...">
+                    </div>
+                    <input type="submit" value="Search" class="search-btn">
                 </div>
-                <input type="submit" value="Search">
             </form>
         </div>
     </section>
-    
+
 </body>
 </html>
