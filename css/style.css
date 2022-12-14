@@ -124,3 +124,17 @@ button {
     justify-content: center;
     margin-top: 2.75rem;
 }
+
+#top-section .top-section-container .center-text-container .service-and-companies .services,
+#top-section .top-section-container .center-text-container .service-and-companies .companies  {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#top-section .top-section-container .center-text-container .service-and-companies .services div:first-child,
+#top-section .top-section-container .center-text-container .service-and-companies .companies div:first-child {
+    background: rgb(91,181,67);
+    padding: .5rem;
+    border-radius: 5px;
+}

@@ -45,7 +45,7 @@
                         <div>
                             <span class="lnr lnr-file-empty"></span>
                         </div>
-                        <p>2000,036 services</p>
+                        <p>2000,036 Services</p>
                     </div>
                     <div class="companies">
                         <div>
