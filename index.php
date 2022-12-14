@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Service finder | explore the best services/business around us</title>
 </head>
 <body>
@@ -43,13 +43,13 @@
                 <div class="service-and-companies">
                     <div class="services">
                         <div>
-                            <i class=""></i>
+                            <span class="lnr lnr-file-empty"></span>
                         </div>
                         <p>2000,036 services</p>
                     </div>
                     <div class="companies">
                         <div>
-                            <i class=""></i>
+                            <span class="lnr lnr-apartment"></span>
                         </div>
                         <p>9,914 Companies</p>
                     </div>
