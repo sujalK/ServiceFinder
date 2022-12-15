@@ -87,7 +87,7 @@
             <!-- image-section -->
             <div class="image-section">
                 <div class="img-container">
-                    <img src="./images/hero-bg-image.jpg" alt="">
+                    <img src="./images/why-choose.webp" alt="">
                 </div>
             </div>
             <!-- text-section -->
