@@ -234,7 +234,7 @@ img {
 }
 
 #why-choose-section .why-choose-section-container .text-section {
-    justify-self: center;
+    justify-self: left;
     line-height: 2;
     max-width: 400px;
     margin: auto;
