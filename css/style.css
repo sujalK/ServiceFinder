@@ -60,8 +60,15 @@ img {
     display: inline-block;
     padding: .5rem 3rem;
     background: rgb(91,181,67);
+    border: 1px solid rgb(91,181,67);
     color: #fff;
     border-radius: 5px;
+    transition: .2s all;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    color: #fff;
 }
 
 /* fonts */
