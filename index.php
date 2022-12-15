@@ -73,5 +73,13 @@
         </div>
     </section>
 
+    <!-- why-choose-us -->
+    <section id="why-choose-us">
+        <div class="container why-choose-us-container">
+            <h1>Why People choose FindNearMe ?</h1>
+            <p>It's one of the fastest growing service finder service which helps hundreds of peoples in a day to locate their required place of interest.</p>
+        </div>
+    </section>
+
 </body>
 </html>
