@@ -81,5 +81,23 @@
         </div>
     </section>
 
+    <!-- why-choose-section -->
+    <section id="why-choose-section">
+        <div class="container why-choose-section-container">
+            <!-- image-section -->
+            <div class="image-section">
+                <div class="img-container">
+                    <img src="./images/hero-bg-image.jpg" alt="">
+                </div>
+            </div>
+            <!-- text-section -->
+            <div class="text-section">
+                <h1>Pick best service you want</h1>
+                <p>Browse through the best services around you to get better experience in the work that you're trying to do.</p>
+                <a href="#" class="btn-primary">Get started</a>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
