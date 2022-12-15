@@ -93,7 +93,7 @@
             <!-- text-section -->
             <div class="text-section">
                 <h1>Pick best service you want</h1>
-                <p>Browse through the best services around you to get better experience in the work that you're trying to do.</p>
+                <p class="mb-1">Browse through the best services around you to get better experience in the work that you're trying to do.</p>
                 <a href="#" class="btn-primary">Get started</a>
             </div>
         </div>
