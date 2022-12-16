@@ -320,6 +320,7 @@ img {
 
 #feedback .feedback-container .feedback-section .feedback-img-section img {
     width: 350px;
+    border-radius: 5px;
 }
 
 /* section: register-user */
