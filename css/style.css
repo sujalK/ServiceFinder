@@ -106,6 +106,19 @@ img {
     font-size: .75rem;
 }
 
+/* hambuger menu */
+.hamburger-menu {
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger-menu .menu-line {
+    width: 32px;
+    height: 2px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
 /* div: top-section */
 #top-section {
     background: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
