@@ -113,9 +113,9 @@ img {
 }
 
 .hamburger-menu .menu-line {
-    width: 32px;
+    width: 40px;
     height: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     background: #fff;
 }
 
@@ -385,4 +385,16 @@ footer .footer-container .links-group a {
 
 footer .footer-container .links-group a:hover {
     color: #333;
+}
+
+/* for smaller devices */
+@media screen and (max-width: 768px) {
+    #top-section .top-section-container .top-nav .center-navigation, 
+    #top-section .top-section-container .top-nav .right-buttons {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
 }
