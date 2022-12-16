@@ -332,11 +332,11 @@ img {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     padding: 5rem 0;
+    grid-gap: 20px;
 }
 
 #register-user .register-user-container .img-container {
     justify-self: end;
-    margin-right: 2rem;
 }
 
 #register-user .register-user-container .img-container img {
