@@ -350,3 +350,24 @@ img {
     justify-self: left;
     align-self: center;
 }
+
+/* footer */
+footer .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .footer-container .links-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+footer .footer-container .links-group a {
+    border-bottom: 1px dotted black;
+}
+
+footer .footer-container .links-group a:hover {
+    color: #333;
+}

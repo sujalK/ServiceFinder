@@ -140,5 +140,20 @@
         </div>
     </section>
 
+    <!-- footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="copyright-text">&copy; 2022, All rights reserved.</div>
+            <div class="links-group">
+                <a href="#">About</a>
+                <a href="#">Help</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="footer-logo-container">
+                <h1>Find<span class="logo-color">NearMe</span></h1>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
