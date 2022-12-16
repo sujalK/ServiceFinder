@@ -99,5 +99,32 @@
         </div>
     </section>
 
+    <!-- feedback -->
+    <section id="feedback" class="mt-2">
+        <div class="container feedback-container">
+            <div class="top-container">
+                <h1>Feedback about Find<span class="logo-color">NearMe</span></h1>
+                <p class="feedback-top-desc">feedback occurs when outputs of a system are routed back as inputs as part of a chain of cause-and-effect that forms a circuit or loop.</p>
+            </div>
+            <div class="feedback-section mt-2">
+                <div class="feedback-text-section">
+                    <p class="review-text">
+                        "FindNearMe has been a one step forward process to find the needed services on the get go.
+                        It has not only assisted me in findinng the right service of my choice but also helped to manage my time in an 
+                        effective way."
+                    </p>
+                    <div class="feedback-user-details">
+                        <b>John Doe</b>
+                        <p>Software engineer</p>
+                        <p class="verified-badge mt-1">verified review</p>
+                    </div>
+                </div>
+                <div class="feedback-img-section">
+                    <img src="./images/feedback.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>

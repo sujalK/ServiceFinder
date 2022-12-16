@@ -82,6 +82,21 @@ img {
 .mb-3 { margin-bottom: 3rem; }
 .mb-4 { margin-bottom: 4rem; }
 
+.mt-1 { margin-top: 1.25rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mt-4 { margin-top: 4rem; }
+
+/* badges */
+.verified-badge {
+    display: inline-block;
+    background: yellowgreen;
+    padding: .2rem .75rem;
+    border-radius: 20px;
+    color: #ffff;
+    font-size: .75rem;
+}
+
 /* div: top-section */
 #top-section {
     background: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
@@ -263,4 +278,37 @@ img {
 
 #why-choose-section .why-choose-section-container .image-section .img-container img {
     border-radius: 10px;
+}
+
+/* section: feedback */
+#feedback .feedback-container .top-container {
+    line-height: 2;
+}
+
+#feedback .feedback-container .top-container  .feedback-top-desc {
+    max-width: 500px;
+}
+
+#feedback .feedback-container .feedback-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    line-height: 1.5;
+}
+
+#feedback .feedback-container .feedback-section .feedback-text-section .feedback-user-details {
+    margin-top: 1.25rem;
+}
+
+#feedback .feedback-container .feedback-section .feedback-text-section .review-text {
+    font-weight: bold;
+}
+
+#feedback .feedback-container .feedback-section .feedback-img-section {
+    display: flex;
+    justify-content: center;
+}
+
+#feedback .feedback-container .feedback-section .feedback-img-section img {
+    width: 350px;
 }
