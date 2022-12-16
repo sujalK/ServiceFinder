@@ -126,5 +126,19 @@
         </div>
     </section>
 
+    <!-- register-user -->
+    <section id="register-user">
+        <div class="container register-user-container">
+            <div class="img-container">
+                <img src="./images/register-user.webp" alt="">
+            </div>
+            <div class="text-div">
+                <h1>Register here</h1>
+                <p>Please click the buttotn below to proceed the work further</p>
+                <a href="#" class="btn-primary mt-1 register-btn-utility">Register</a>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
