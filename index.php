@@ -161,5 +161,18 @@
         </div>
     </footer>
 
+    <!-- full-page-menu -->
+    <section id="full-page-menu" class="hide-menu">
+        <div class="container full-page-menu-container">
+            <a href="#">Home</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+            <a href="#">About</a>
+            <a href="#">Login</a>
+            <a href="#">Register Now</a>
+            <div href="#" class="close-menu">&times;</div>
+        </div>
+    </section>
+
 </body>
 </html>

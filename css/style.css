@@ -387,6 +387,55 @@ footer .footer-container .links-group a:hover {
     color: #333;
 }
 
+/* full-page-menu */
+.hide-menu {
+    display: none;
+}
+
+#full-page-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#full-page-menu .full-page-menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+#full-page-menu .full-page-menu-container a {
+    color: #ffff;
+    font-weight: bold;
+    padding: .75rem 0;
+    font-size: 1.25rem;
+}
+
+#full-page-menu .full-page-menu-container a:hover {
+    color: rgb(98, 205, 53);
+}
+
+#full-page-menu .full-page-menu-container .close-menu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    right: 15px;
+    color: #fff;
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+#full-page-menu .full-page-menu-container .close-menu:hover {
+    color: rgb(238, 32, 32);
+}
+
 /* for smaller devices */
 @media screen and (max-width: 768px) {
     #top-section .top-section-container .top-nav .center-navigation, 
