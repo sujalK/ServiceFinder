@@ -35,6 +35,12 @@
                     <a href="#" class="login-btn">Log in</a>
                     <a href="#" class="register-now-btn">Register Now</a>
                 </div>
+                <!-- hamburger menu -->
+                <div class="hamburger-menu">
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
+                </div>
             </div>
             <!-- center text container -->
             <div class="center-text-container">

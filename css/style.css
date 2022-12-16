@@ -106,6 +106,19 @@ img {
     font-size: .75rem;
 }
 
+/* hambuger menu */
+.hamburger-menu {
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger-menu .menu-line {
+    width: 40px;
+    height: 2px;
+    margin-bottom: 8px;
+    background: #fff;
+}
+
 /* div: top-section */
 #top-section {
     background: url("../images/hero-bg-image.jpg") no-repeat center center/cover;
@@ -372,4 +385,147 @@ footer .footer-container .links-group a {
 
 footer .footer-container .links-group a:hover {
     color: #333;
+}
+
+/* for smaller devices */
+@media screen and (max-width: 768px) {
+    #top-section .top-section-container .top-nav .center-navigation, 
+    #top-section .top-section-container .top-nav .right-buttons {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 668px) {
+    .font-2 {
+        font-size: 1.5rem;
+    }
+
+    #top-section .top-section-container .search-form .form-group input {
+        font-size: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    #top-section .top-section-container .search-form .form-group i {
+        top: 17px;
+    }
+
+    #top-section .top-section-container .search-form .wrapper-form-group > input {
+        top: 16.5%;
+    }
+
+    #why-choose-section .why-choose-section-container .image-section {
+        display: none;
+    }
+
+    #why-choose-section .why-choose-section-container .text-section {
+        max-width: 100%;
+    }
+
+    #why-choose-section .why-choose-section-container {
+        grid-template-columns: 1fr;
+    }
+
+    #feedback .feedback-container .feedback-section {
+        grid-template-columns: 1fr;
+    }
+
+    #feedback .feedback-container .feedback-section .feedback-img-section {
+        display: none;
+    }
+
+    #why-choose-us {
+        height: 100%;
+    }
+
+    #register-user .register-user-container {
+        grid-template-columns: 1fr;
+    }
+
+    #register-user .register-user-container .img-container {
+        display: none;
+    }
+
+    #register-user .register-user-container .text-div {
+        text-align: center;
+        justify-self: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #top-section .top-section-container .search-form {
+        flex-direction: column;
+    }
+
+    #top-section .top-section-container .search-form .form-group.service-search input {
+        border-radius: 0;
+        border-bottom: 1px solid #333;
+    }
+
+    #top-section .top-section-container .search-form .wrapper-form-group .form-group input[type="text"]{
+        border-radius: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+
+    #top-section .top-section-container .search-form .form-group input {
+        padding-right: 0;
+    }
+
+    #top-section .top-section-container .search-form .wrapper-form-group > input {
+        top: 50px;
+        left: 0px;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    footer .footer-container {
+        flex-direction: column;
+        line-height: 2;
+    }
+
+    footer .footer-logo-container h1 {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #top-section .top-section-container .center-text-container .service-and-companies .services p, 
+    #top-section .top-section-container .center-text-container .service-and-companies .companies p {
+        font-size: .75rem;
+    }
+
+    .font-2 {
+        font-size: 1.25rem;
+    }
+
+    #why-choose-us .why-choose-us-container h1 {
+        line-height: 1.5;
+        font-size: 1.1rem;
+        padding-bottom: .75rem;
+    }
+
+    #feedback .feedback-container .top-container h1 {
+        line-height: 1.5;
+        font-size: 1.1rem;
+        text-align: center;
+        padding-bottom: .75rem;
+    }
+
+    #why-choose-section .why-choose-section-container .text-section h1 {
+        font-size: 1.1rem;
+        text-align: center;
+        padding-bottom: .75rem;
+    }
 }
