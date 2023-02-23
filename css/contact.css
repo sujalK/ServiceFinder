@@ -1,6 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
 /* top-section */
 #top-section {
     padding-bottom: 0;
+}
+
+#contact-us {
+    font-family: 'Open Sans', sans-serif;
 }
