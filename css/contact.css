@@ -1,5 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
 /* top-section */
 #top-section {
     padding-bottom: 0;
 }
 
+#contact-us {
+    font-family: 'Open Sans', sans-serif;
+    margin: 3rem 0;
+}
+
+#contact-us .contact-us-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+#contact-us .contact-us-container .contact-us-title {
+    font-weight: 600;
+    color: #333;
+    font-size: 2rem;
+    padding-bottom: 3rem;
+}
+
+#contact-us .contact-us-container .contact-us-form .two-col-form-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+}
+
+#contact-us .contact-us-container .contact-us-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1.25rem 0;
+}
+
+#contact-us .contact-us-container .contact-us-form .form-group label {
+    padding-bottom: .5rem;
+    cursor: pointer;
+}
+
+#contact-us .contact-us-container .contact-us-form .form-group input[type="text"],
+#contact-us .contact-us-container .contact-us-form .form-group input[type="email"],
+#contact-us .contact-us-container .contact-us-form .form-group textarea {
+    border: 1.5px solid #ebebeb;
+    font-size: 1.1rem;
+    padding: .5rem .5rem;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 5px;
+    outline: none;
+}
+
+#contact-us .contact-us-container .contact-us-form .form-group textarea {
+    resize: none;
+    height: 250px;
+}
+
+#contact-us .contact-us-container .contact-us-form .contact-send-button {
+    font-family: 'Open Sans', sans-serif;
+    background: black;
+    color: #fff;
+    padding: .5rem .75rem;
+    font-size: 1.1rem;
+    min-width: 50%;
+    cursor: pointer;
+    transition: .25s all;
+    border: 1px solid #2f2e2e;
+    border-radius: 2px;
+}
+
+#contact-us .contact-us-container .contact-us-form .contact-send-button:hover {
+    background: #fff;
+    color: #000;
+}
+
+footer {
+    /* background: #494747; */
+    border-top: .5px solid #000;;
+}
+
+footer, 
+footer a {
+    /* color: #fff; */
+}
+
+footer a {
+    /* border-color: #fff !important; */
+}
+
+footer a:hover {
+    color: rgb(91,181,67) !important;
+    border-color: rgb(91,181,67) !important;
+}
+
+/* for smaller devices */
+@media screen and (max-width: 500px) {
+    #contact-us .contact-us-container .contact-us-form .two-col-form-group {
+        grid-template-columns: 1fr;
+        grid-gap: 0;
+    }
+
+    #contact-us .contact-us-container .contact-us-form .contact-send-button {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    #contact-us .contact-us-container .contact-us-form .form-group input[type="text"],
+    #contact-us .contact-us-container .contact-us-form .form-group input[type="email"],
+    #contact-us .contact-us-container .contact-us-form .form-group textarea {
+        font-size: 1rem;
+    }
+}
