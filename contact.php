@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 
     // check to see if the inputs is not empty
     if ($sender_name != '' && $sender_email != '' && $message != '') {
-        
+
         // PHP Mailer
         $mail= new PHPMailer();
 
@@ -55,6 +55,8 @@ if (isset($_POST['submit'])) {
             
         }
 
+    } else {
+        $msg = 'Please make sure all the fields are filled out before sending your query.';
     }
 
 }
