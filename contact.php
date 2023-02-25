@@ -56,6 +56,7 @@ if (isset($_POST['submit'])) {
         }
 
     } else {
+        $error_class = 'error-div';
         $msg = 'Please make sure all the fields are filled out before sending your query.';
     }
 
@@ -117,7 +118,9 @@ if (isset($_POST['submit'])) {
                 Get in touch. 👋
             </h1>
             <?php if (isset($msg)): ?>
-            <h2 class="mail-msg"><?php echo $msg; ?></h2>
+            <h2 class="mail-msg <?php echo isset($error_class) ? $error_class : ''; ?>">
+                <?php echo $msg; ?>
+            </h2>
             <?php endif; ?>
             <!-- contact-us form -->
             <form action="contact.php" method="POST" class="contact-us-form">
