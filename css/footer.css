@@ -1,0 +1,18 @@
+footer {
+    /* background: #494747; */
+    border-top: .5px solid #000;;
+}
+
+footer, 
+footer a {
+    /* color: #fff; */
+}
+
+footer a {
+    /* border-color: #fff !important; */
+}
+
+footer a:hover {
+    color: rgb(91,181,67) !important;
+    border-color: rgb(91,181,67) !important;
+}

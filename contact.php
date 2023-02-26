@@ -76,6 +76,7 @@ if (isset($_POST['submit'])) {
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/footer.css">
     <title>Service Finder | Contact Us</title>
 </head>
 <body>
@@ -111,6 +112,7 @@ if (isset($_POST['submit'])) {
         </div>
     </section>
 
+    <!-- section: contact-us -->
     <section id="contact-us">
         <div class="container contact-us-container">
             <h1 class="contact-us-title">

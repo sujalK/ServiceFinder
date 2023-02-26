@@ -96,6 +96,18 @@ img {
 .mt-3 { margin-top: 3rem; }
 .mt-4 { margin-top: 4rem; }
 
+/* Padding classes */
+.p-half { padding: .5rem 0; }
+.p-1 { padding: 1rem 0; }
+.p-2 { padding: 2rem 0; }
+.p-3 { padding: 3rem 0; }
+.p-4 { padding: 4rem 0; }
+
+/* font classes */
+.font-light { font-weight: 100; }
+.font-medium { font-weight: 400; }
+.font-bold { font-weight: 700; }
+
 /* badges */
 .verified-badge {
     display: inline-block;
