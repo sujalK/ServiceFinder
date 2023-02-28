@@ -1,4 +1,6 @@
 <?php 
+include_once "helpers/initialize.php";
+
 // mailer files
 require "mailer/PHPMailer/PHPMailer.php";
 require 'mailer/PHPMailer/Exception.php';

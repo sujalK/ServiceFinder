@@ -5,10 +5,10 @@
         public static $database;
         protected static $table_name = '';
         public static $count_rows    = 0;
-        static protected $db_columns= [];
+        static protected $db_columns = [];
 
         // errors, grab errors here
-        public $errors= [];
+        public $errors = [];
         
         public static function set_db($database) 
         {
@@ -58,9 +58,9 @@
         {
             // create new object, which stores db values
             $object= new static;
-            foreach($record as $property=> $value) {
+            foreach($record as $property => $value) {
                 if(property_exists($object, $property)) {
-                    $object->$property= $value;
+                    $object->$property = $value;
                 }
             }
             return $object;
