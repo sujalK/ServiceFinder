@@ -68,10 +68,6 @@
     border-radius: 50%;
 }
 
-#register .register-container .right-register-div {
-
-}
-
 #register .register-container .right-register-div form .form-group {
     display: flex;
     flex-direction: column;
