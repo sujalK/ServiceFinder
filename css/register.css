@@ -11,6 +11,20 @@
     color: #5bb543;
 }
 
+.alert-message {
+    padding: .5rem .5rem;
+    color: #fff;
+    background: transparent;
+}
+
+.success-message {
+    background: #5db545;
+}
+
+.error-message {
+    background: rgb(235, 67, 67);
+}
+
 /* register */
 #register {
     font-family: 'Bellota Text', cursive;

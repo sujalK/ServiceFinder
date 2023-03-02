@@ -39,4 +39,12 @@
         return substr($text, 0, 60) . "...";
     }
 
+    function is_post () {
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
+    }
+
+    function is_get() {
+        return $_SERVER['REQUEST_METHOD'] === 'GET';
+    }
+
 ?>
