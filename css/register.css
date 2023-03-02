@@ -68,10 +68,6 @@
     border-radius: 50%;
 }
 
-#register .register-container .right-register-div {
-
-}
-
 #register .register-container .right-register-div form .form-group {
     display: flex;
     flex-direction: column;
@@ -101,3 +97,26 @@
     border-color: #5bb543;
 }
 
+#register .register-container .right-register-div .two-col-div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+/* for smaller screens */
+@media screen and (max-width: 768px) {
+    #register .register-container {
+        grid-template-columns: 1fr;
+    }
+
+    #register .register-container .right-register-div {
+        order: -1;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #register .register-container .right-register-div .two-col-div {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

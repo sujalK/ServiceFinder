@@ -51,8 +51,10 @@
     <section id="register">
         <div class="container register-container">
             <div class="left-register-div">
-                <h1 class="p-1 main-text">Let us help you run your<br /> business.</h1>
-                <p class="p-half sub-text">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
+                <!-- <h1 class="p-1 main-text">Let us help you run your<br /> business.</h1> -->
+                <h1 class="p-1 main-text">Let's explore the best services<br /> in the city.</h1>
+                <p class="p-half sub-text">Our registration process is quick and easy.</p>
+                <!-- <p class="p-half sub-text">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p> -->
                 <div class="bottom-review-div">
                     <p class="user-review-text">
                         I'm impressed with the results I've seen since <br />
@@ -74,21 +76,34 @@
                 <h1 class="p-half">Get started</h1>
                 <p class="p-half font-light">Create your account now</p>
                 <form action="" method="post" class="p-1">
-                    <div class="form-group">
-                        <label for="full_name">Full name</label>
-                        <input type="text" name="full_name" id="full_name" placeholder="Alex Johnson">
+                    <div class="two-col-div">
+                        <div class="form-group">
+                            <label for="first_name">First name</label>
+                            <input type="text" name="first_name" id="first_name" placeholder="Alex">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last name</label>
+                            <input type="text" name="last_name" id="last_name" placeholder="Johnnson">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" placeholder="alex_traveller@gmail.com">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
+                    <div class="two-col-div">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" name="confirm_password" id="confirm_password">
+                        </div>
                     </div>
                     <input type="submit" value="Sign Up">
                 </form>
                 <p>Have an account ? <a href="#" class="login-link">Login</a></p>
+                <p class="p-3"><a href="#" class="login-link">visit here</a> for business registration</p>
             </div>
         </div>
     </section>
