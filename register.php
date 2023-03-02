@@ -90,9 +90,15 @@
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" placeholder="alex_traveller@gmail.com">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
+                    <div class="two-col-div">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" name="confirm_password" id="confirm_password">
+                        </div>
                     </div>
                     <input type="submit" value="Sign Up">
                 </form>
