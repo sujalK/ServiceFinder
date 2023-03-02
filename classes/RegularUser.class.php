@@ -13,20 +13,7 @@ class RegularUser extends DbObject
     public $hashed_password;
     public $password, $confirm_password;
 
-    // constructor
-    // public function __construct($first_name = '', $last_name = '', $email = '', $password = '', $confirm_password = '', $user_role = '', $is_verified = 0, $created_at = null, $account_active_status = 1)
-    // {
-    //     $this->first_name             = $first_name ?? '';
-    //     $this->last_name              = $last_name ?? '';
-    //     $this->email                  = $email ?? '';
-    //     $this->password               = $password ?? '';
-    //     $this->confirm_password       = $confirm_password ?? '';
-    //     $this->user_role              = $user_role ?? '';
-    //     $this->is_verified            = $is_verified ?? '';
-    //     $this->created_at             = $created_at ?? '';
-    //     $this->account_active_status  = $account_active_status ?? '';
-    // }
-
+    // set up the properties initially
     public function __construct($post = null, $created_at = null, $user_role = 'regular_user', $is_verified = 0, $account_active_status = 1)
     {
         $this->first_name             = $post['first_name'] ?? '';
@@ -40,11 +27,13 @@ class RegularUser extends DbObject
         $this->account_active_status  = $account_active_status;
     }
 
+    // set the hashed property to the property
     protected function set_hashed_password() 
     {
         $this->hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
+    // verify password
     public function verify_password($password)
     {
         return password_verify($password, $this->hashed_password);
