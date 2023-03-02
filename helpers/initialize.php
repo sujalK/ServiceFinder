@@ -35,5 +35,6 @@ $session = new Session;
 date_default_timezone_set("Asia/Kathmandu");
 
 $date = new DateTime();
+$current_date_and_time = $date->format('Y-m-d H:i:s');
 
 ?>
