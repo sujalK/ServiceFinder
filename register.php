@@ -10,10 +10,10 @@ if (is_post()) {
     if (!$user_email) {
         // create user
         if ($regular_user->create()) {
-
             // show user creation success message
-            $success_message = 'Registration successful. Please check your email for the account activtion.';
+            $success_message = 'Registration successful.';
         } else {
+            // get the validation errors
             $errors = $regular_user->errors;
         }
     } else {
@@ -99,22 +99,28 @@ if (is_post()) {
             <div class="right-register-div">
                 <?php if(isset($error_message)): ?> <p class="alert-message error-message"><?php echo $error_message; ?></p> <?php endif; ?>
                 <?php if(isset($success_message)): ?> <p class="alert-message success-message"><?php echo $success_message; ?></p> <?php endif; ?>
+                <!-- printing errors -->
+                <?php if(isset($errors)): ?>
+                    <?php foreach($errors as $error): ?>
+                        <p class="alert-message error-message"><?php echo $error; ?></p>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                 <h1 class="p-half">Get started</h1>
                 <p class="p-half font-light">Create your account now</p>
                 <form action="" method="post" class="p-1">
                     <div class="two-col-div">
                         <div class="form-group">
                             <label for="first_name">First name</label>
-                            <input type="text" name="first_name" id="first_name" placeholder="Alex" value="<?php echo isset($regular_user->first_name) ? $regular_user->first_name : '' ?>">
+                            <input type="text" name="first_name" id="first_name" placeholder="Alex" value="<?php // echo isset($regular_user->first_name) ? $regular_user->first_name : '' ?>">
                         </div>
                         <div class="form-group">
                             <label for="last_name">Last name</label>
-                            <input type="text" name="last_name" id="last_name" placeholder="Johnnson" value="<?php echo isset($regular_user->last_name) ? $regular_user->last_name : '' ?>">
+                            <input type="text" name="last_name" id="last_name" placeholder="Johnnson" value="<?php // echo isset($regular_user->last_name) ? $regular_user->last_name : '' ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="alex_traveller@gmail.com" value="<?php echo isset($regular_user->email) ? $regular_user->email : '' ?>">
+                        <input type="email" name="email" id="email" placeholder="alex_traveller@gmail.com" value="<?php // echo isset($regular_user->email) ? $regular_user->email : '' ?>">
                     </div>
                     <div class="two-col-div">
                         <div class="form-group">
