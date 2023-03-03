@@ -47,4 +47,21 @@
         return $_SERVER['REQUEST_METHOD'] === 'GET';
     }
 
+    function get_token() 
+    {
+        return bin2hex(random_bytes(32));
+    }
+
+    function get_register_email_text(string $token) 
+    {
+        $html = <<<DEL
+        Hello!<br />
+        Thank you for creating account on FindNearMe. <br /><br />
+        To complete your registration, click the link below <br />
+        DEL;
+        $html .= "<a href=\"https://saghao.com/verify.php?token=". $token ."\">Verify email address</a><br /><br />";
+        $html .= "FindNearMe Team.";
+        return $html;
+    }
+
 ?>

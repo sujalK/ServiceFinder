@@ -2,16 +2,37 @@
 <?php 
 // post request check
 if (is_post()) {
-    // RegularUser instance
-    $regular_user = new RegularUser($_POST, $current_date_and_time);
-    $user_email   = $regular_user->find_by_email($_POST['email']);
+    // user form inputs
+    $input_email     = sanitize($_POST['email']);
+    $input_username  = sanitize($_POST['first_name']) . " " . sanitize($_POST['last_name']);
+    
+    // generate token for both database insertion and for the email verification link
+    $generate_token = get_token();
 
+    // RegularUser instance
+    $regular_user = new RegularUser($_POST, $current_date_and_time, $generate_token);
+    $user_email   = $regular_user->find_by_email($input_email);
+    
     // create euser if the user does not exist
     if (!$user_email) {
         // create user
         if ($regular_user->create()) {
-            // show user creation success message
-            $success_message = 'Registration successful.';
+            // Emailer instance
+            $emailer = new Emailer (
+                getenv('SMTP_USERNAME'), 
+                'sathibhai.com', 
+                getenv('SMTP_USERNAME'), 
+                getenv('SMTP_USERNAME'), 
+                'sathibhai.com', 
+                'Please activate your account', 
+                get_register_email_text($generate_token), 
+                $input_email, 
+                $input_username
+            );
+            if ($emailer->send()) {
+                // show user creation success message
+                $success_message = 'Registration successful. Please check your email to activate and start using our services.';
+            }
         } else {
             // get the validation errors
             $errors = $regular_user->errors;

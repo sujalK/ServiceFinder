@@ -6,21 +6,22 @@ class RegularUser extends DbObject
     protected static $table_name = 'users';
 
     // columns
-    protected static $db_columns = ['id', 'first_name', 'last_name', 'email', 'hashed_password', 'user_role', 'is_verified', 'created_at', 'account_active_status'];
+    protected static $db_columns = ['id', 'first_name', 'last_name', 'email', 'hashed_password', 'user_role', 'is_verified', 'created_at', 'account_active_status', 'token'];
 
     // properties
-    public $id, $first_name, $last_name, $email, $user_role, $is_verified, $created_at, $account_active_status;
+    public $id, $first_name, $last_name, $email, $user_role, $is_verified, $created_at, $account_active_status, $token;
     public $hashed_password;
     public $password, $confirm_password;
 
     // set up the properties initially
-    public function __construct($post = null, $created_at = null, $user_role = 'regular_user', $is_verified = 0, $account_active_status = 1)
+    public function __construct($post = null, $created_at = null, $token = '', $user_role = 'regular_user', $is_verified = 0, $account_active_status = 1)
     {
         $this->first_name             = $post['first_name'] ?? '';
         $this->last_name              = $post['last_name'] ?? '';
         $this->email                  = $post['email'] ?? '';
         $this->password               = $post['password'] ?? '';
         $this->confirm_password       = $post['confirm_password'] ?? '';
+        $this->token                  = $token ?? '';
         $this->created_at             = $created_at;
         $this->user_role              = $user_role;
         $this->is_verified            = $is_verified;
