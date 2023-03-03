@@ -9,6 +9,7 @@ class Validator {
         $this->set_email($email);
     }
 
+    // set up the email
     private function set_email(string $email = ''): void
     {
         if ($this->is_valid($email)) {
@@ -16,11 +17,13 @@ class Validator {
         }
     }
     
+    // get_email: return email if it's there otherwise return null
     public function get_email(): string | NULL
     {
         return isset($this->email) ? $this->email : NULL;
     }
 
+    // is_valid: checks the validity of the email
     private function is_valid(string $email = ''): bool 
     {
        // Remove all illegal characters from email

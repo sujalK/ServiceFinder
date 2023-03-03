@@ -25,10 +25,6 @@ $connection = connect_to_db();
 // setting up connection for global access through class
 DbObject::set_db($connection);
 
-// echo "<pre>";
-// print_r(User::find_by_sql("SELECT * FROM users"));
-// echo "</pre>";
-
 // set up session
 $session = new Session;
 
