@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
+#top-section {
+    padding-bottom: 0;
+}
+
+/* footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+} */
+
+footer {
+    margin-top: 3rem;
+}
+
+/* Utilities */
+.welcome-text {
+    color: rgb(59,48,84); 
+    font-family: 'Tilt Neon', cursive;
+    /* padding-bottom: .5rem; */
+}
+
+.signup-text {
+    color: rgb(91,181,67);
+    text-decoration: underline;
+}
+
+.login-subtext {
+    font-size: 1.25rem;
+    color: #999;
+}
+
+/* login */
+#login .login-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#login .login-container .text-container {
+    align-self: center;
+    /* justify-self: center; */
+}
+
+#login .login-container .text-container form .form-group {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 0;
+}
+
+#login .login-container .text-container form .form-group label {
+    padding: 0 0 .25rem 0;
+}
+
+#login .login-container .text-container form .form-group input[type="email"],
+#login .login-container .text-container form .form-group input[type="password"] {
+    padding: .25rem;
+    font-size: 1.1rem;
+    outline: none;
+    width: 80%;
+}
+
+#login .login-container .text-container form input[type="submit"] {
+    background: rgb(54, 110, 206);
+    color: #fff;
+    border: none;
+    padding: .5rem 3rem;
+    font-family: 'Tilt Neon', cursive;
+    width: 200px;
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#login .login-container .text-container form input[type="submit"]:hover {
+
+}
+
+@media (min-width: 1200px) {
+    #login .login-container .login-img-container {
+        max-width: 95%;
+    }
+}
+
+/* @media (min-width: 1200px) {
+    #login .login-container .login-img-container {
+        width: 70%;
+    }
+} */
+
+@media screen and (max-width: 820px) {
+    #login .login-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #login .login-container .text-container form .form-group input[type="email"],
+    #login .login-container .text-container form .form-group input[type="password"] {
+        width: 100%;
+    }
+}

@@ -126,6 +126,8 @@ if (is_post()) {
                         <p class="alert-message error-message"><?php echo $error; ?></p>
                     <?php endforeach; ?>
                 <?php endif; ?>
+                <?php if(isset($_SESSION['user_verified'])): ?> <p class="alert-message success-message"><?php echo $_SESSION['user_verified']; unset($_SESSION['user_verified']); ?></p> <?php endif; ?>
+                <?php if(isset($_SESSION['verification_failed'])): ?> <p class="alert-message error-message"><?php echo $_SESSION['verification_failed']; unset($_SESSION['verification_failed']); ?></p> <?php endif; ?>
                 <h1 class="p-half">Get started</h1>
                 <p class="p-half font-light">Create your account now</p>
                 <form action="" method="post" class="p-1">
