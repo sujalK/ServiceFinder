@@ -1,3 +1,59 @@
+<?php 
+    include "./helpers/initialize.php";
+    /* 
+        login for user roles:
+        business_owner
+        regular_user
+    */
+
+    // check to see if the rquest is post reequest
+    if (is_post() && isset($_POST['login'])) {
+        // user inputs
+        $email    = sanitize($_POST['email']);
+        $password = $_POST['password'];
+
+        // check to see if both the email and password are filled in
+        if (empty($email) || empty($password)) {
+            Session::set_custom_session('empty_fields', 'Please make sure to fill all the fields before logging in.');
+        } else {
+            // get the user by email
+            $user = RegularUser::find_by_email($email);
+
+            // check to see if a user exists
+            if ($user) {
+                // if the password gets verified
+                if ($user->verify_password($password)) {
+                    // set session
+                    Session::set_custom_session('user_id', $user->id);
+                    Session::set_custom_session('first_name', $user->first_name);
+                    Session::set_custom_session('last_name', $user->last_name);
+                    Session::set_custom_session('user_role', $user->user_role);
+                    Session::set_custom_session('account_active_status', $user->account_active_status);
+                    Session::set_custom_session('is_verified', $user->is_verified);
+    
+                    // login user only if account is active
+                    if ($_SESSION['is_verified'] == 1 && $_SESSION['account_active_status'] == 1) {                    
+                        // redirect to the page
+                        header("Location:user_panel");
+                    } else {
+                        // set session for error message
+                        Session::set_custom_session('account_state_error', 'Please make sure your account is active and is in running state.');
+                    }
+                } else {
+                    // invalid password (showing a generic message)
+                    Session::set_custom_session('invalid_login', 'Please make sure that your login credentials are correct.');
+                    // header('Location:login.php');
+                }
+    
+            } else {
+                // user not found
+                Session::set_custom_session('user_not_found', 'User not found. Please make sure you\'re registered into the system.');
+            }
+        }
+
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,6 +113,13 @@
             <div class="text-container">
                 <h1 class="welcome-text">Welcome!</h1>
                 <p class="p-1 login-subtext">Login into your account</p>
+                <?php if(isset($_SESSION['account_state_error'])): ?> <p class="alert-message error-message"><?php echo $_SESSION['account_state_error']; ?></p> <?php unset($_SESSION['account_state_error']); endif; ?>
+                <?php if(isset($_SESSION['invalid_login'])): ?> <p class="alert-message error-message"><?php echo $_SESSION['invalid_login']; ?></p> <?php unset($_SESSION['invalid_login']); endif; ?>
+                <?php if(isset($_SESSION['user_not_found'])): ?> <p class="alert-message error-message"><?php echo $_SESSION['user_not_found']; ?></p> <?php unset($_SESSION['user_not_found']); endif; ?>
+                <?php if(isset($_SESSION['empty_fields'])): ?> <p class="alert-message error-message"><?php echo $_SESSION['empty_fields']; ?></p> <?php unset($_SESSION['empty_fields']); endif; ?>
+                
+                <?php if(isset($_SESSION['user_verified'])): ?> <p class="alert-message success-message"><?php echo $_SESSION['user_verified']; unset($_SESSION['user_verified']); ?></p> <?php endif; ?>
+                <?php if(isset($_SESSION['verification_failed'])): ?> <p class="alert-message error-message"><?php echo $_SESSION['verification_failed']; unset($_SESSION['verification_failed']); ?></p> <?php endif; ?>
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="email">Your email</label>

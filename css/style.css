@@ -103,10 +103,20 @@ img {
 .p-3 { padding: 3rem 0; }
 .p-4 { padding: 4rem 0; }
 
+.py-1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
 /* font classes */
 .font-light { font-weight: 100; }
 .font-medium { font-weight: 400; }
 .font-bold { font-weight: 700; }
+
+/* d-block */
+.d-block {
+    display: block;
+}
 
 /* badges */
 .verified-badge {
@@ -116,6 +126,23 @@ img {
     border-radius: 20px;
     color: #ffff;
     font-size: .75rem;
+}
+
+/* alerts */
+.alert-message {
+    padding: .5rem .5rem;
+    color: #fff;
+    background: transparent;
+}
+
+.success-message {
+    background: #5db545;
+}
+
+.error-message {
+    color: #b02f45;
+    background: rgb(249, 189, 195);
+    margin-bottom: .25rem;
 }
 
 /* hambuger menu */

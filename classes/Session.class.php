@@ -43,10 +43,16 @@
             }
         }
 
-        public function echo_session() {
-            echo "FROM SESSION CLASS";
+        public static function set_custom_session($key, $message) 
+        {
+            $_SESSION[$key] = $message;
+        }
+
+        public static function unset_custom_session($key) 
+        {
+            unset($_SESSION[$key]);
         }
 
     }
-    
+
 ?>

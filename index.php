@@ -25,15 +25,15 @@
                 </div>
                 <!-- center-navigation -->
                 <div class="center-navigation">
-                    <a href="#">Home</a>
+                    <a href="index.php">Home</a>
                     <a href="#">Careers</a>
-                    <a href="#">Contact</a>
+                    <a href="contact.php">Contact</a>
                     <a href="#">About</a>
                 </div>
                 <!-- right-buttons -->
                 <div class="right-buttons">
-                    <a href="#" class="login-btn">Log in</a>
-                    <a href="#" class="register-now-btn">Register Now</a>
+                    <a href="login.php" class="login-btn">Log in</a>
+                    <a href="register.php" class="register-now-btn">Register Now</a>
                 </div>
                 <!-- hamburger menu -->
                 <div class="hamburger-menu">

@@ -1,5 +1,4 @@
 <?php 
-
 include "helpers/initialize.php";
 
 // check to see if the request is get/post
@@ -12,7 +11,7 @@ if (is_get()) {
         $verify->verify_user();
         
         // redirect to the register page
-        header("Location: register.php");
+        header("Location:login.php");
     }
 }
 
