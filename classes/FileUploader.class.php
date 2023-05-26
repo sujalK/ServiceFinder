@@ -30,7 +30,7 @@ class FileUploader
      * upload(string file): string | bool
      * Uploads file to the HDD
     */
-    public static function upload(array $file = []): string | bool 
+    public static function upload(array $file = [], string $upload_path = ''): string | bool 
     {
         // set file info
         self::set_file_info($file);
@@ -43,7 +43,7 @@ class FileUploader
 
                 if (self::has_valid_size()) {
                     // save file to the disk
-                    return self::save_file_to_disk(self::$file_tmp, self::get_file_path());
+                    return self::save_file_to_disk(self::$file_tmp, self::get_file_path($upload_path));
                 } else {
                     self::$errors[] = 'File size exceeded.';
                 }
@@ -120,9 +120,9 @@ class FileUploader
      * get_file_name_and_path
      * returns the unique file name with the path to upload the file
     */
-    private static function get_file_path(): string 
+    public static function get_file_path(string $new_path = ''): string 
     {
-        return 'uploads/'. uniqid('', true) . ".". self::get_file_extension(self::$file_name);
+        return (!empty($new_path) ? $new_path : 'uploads/'). uniqid('', true) . ".". self::get_file_extension(self::$file_name);
     }
 
 }

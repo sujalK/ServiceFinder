@@ -1,5 +1,11 @@
 <?php 
     include "./helpers/initialize.php";
+    include ROOT_PAGE. "/utilities/server/logout.php";
+    
+    // don't show login page if the user is already logged in
+    if (isset($_SESSION['user_id']) && !empty($_SESSION['user_role'])) {
+        header("Location:index.php");
+    }
     /* 
         login for user roles:
         business_owner
@@ -22,7 +28,7 @@
             // check to see if a user exists
             if ($user) {
                 // if the password gets verified
-                if ($user->verify_password($password)) {
+                if ($user->verify_password($password) && $user->account_active_status == 1 && $user->is_verified == 1) {
                     // set session
                     Session::set_custom_session('user_id', $user->id);
                     Session::set_custom_session('first_name', $user->first_name);
@@ -32,9 +38,27 @@
                     Session::set_custom_session('is_verified', $user->is_verified);
     
                     // login user only if account is active
-                    if ($_SESSION['is_verified'] == 1 && $_SESSION['account_active_status'] == 1) {                    
-                        // redirect to the page
-                        header("Location:user_panel");
+                    if ($_SESSION['is_verified'] == 1 && $_SESSION['account_active_status'] == 1) {
+                        /* 
+                            login logs
+                        */
+                        $log_sql = "INSERT INTO login_logs (logged_in_at, login_user_id) VALUES(now(), $user->id)";
+                        $connection->query($log_sql);
+
+                        // only allow business owner to login, so that they can list their business/services
+                        if ($_SESSION['user_role'] === 'business_owner' || $_SESSION['user_role'] === 'admin') {
+                            
+
+                            // redirect to the page
+                            header("Location:user_panel");
+                        } else {
+                            // if the user is the regular_user, then redirect to the index page and then set session
+                            if ($_SESSION['user_role'] == 'regular_user') {
+                                header("Location:index.php");
+                                Session::set_custom_session('regular_user_role', 'You have been logged in successfully.');
+                            }
+                            Session::set_custom_session('account_state_error', 'Please make sure your account is business account to add/manage business/services.');
+                        }
                     } else {
                         // set session for error message
                         Session::set_custom_session('account_state_error', 'Please make sure your account is active and is in running state.');
@@ -83,15 +107,27 @@
                 </div>
                 <!-- center-navigation -->
                 <div class="center-navigation">
-                    <a href="#">Home</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Contact</a>
-                    <a href="#">About</a>
+                    <a href="index.php">Home</a>
+                    <!-- <a href="#">Careers</a> -->
+                    <a href="contact.php">Contact</a>
+                    <a href="about.php">About</a>
                 </div>
                 <!-- right-buttons -->
                 <div class="right-buttons">
-                    <a href="#" class="login-btn">Log in</a>
-                    <a href="#" class="register-now-btn">Register Now</a>
+                    <!-- Only show the log in if the user is not logged in -->
+                    <?php if(empty($_SESSION['user_id'])): ?>
+                    <a href="login.php" class="login-btn">Log in</a>
+                    <?php else: ?>
+                    <div class="notification-bar">
+                        <span id="notification-bell" class="lnr lnr-alarm" style="font-size: 1.25rem"></span>
+                    </div>
+                    <?php echo '<a href="?logout"><span class="lnr lnr-exit"></span> Logout</a>' ?>
+                    <?php endif; ?>
+
+                    <!-- only show register button if the user is not logged in -->
+                    <?php if(empty($_SESSION['user_id'])): ?>
+                    <a href="register.php" class="register-now-btn">Register Now</a>
+                    <?php endif; ?>
                 </div>
                 <!-- hamburger menu -->
                 <div class="hamburger-menu">
@@ -132,7 +168,7 @@
                     <input type="submit" name="login" value="Login">
                 </form>
                 <p>
-                    Don't have an account ? <a href="#" class="signup-text">Sign Up</a>
+                    Don't have an account ? <a href="register.php" class="signup-text">Sign Up</a>
                 </p>
             </div>
         </div>
@@ -142,11 +178,11 @@
     <!-- footer -->
     <footer>
         <div class="container footer-container">
-            <div class="copyright-text">&copy; 2022, All rights reserved.</div>
+            <div class="copyright-text">&copy; <span class="current-year"></span>, All rights reserved.</div>
             <div class="links-group">
-                <a href="#">About</a>
-                <a href="#">Help</a>
-                <a href="#">Terms</a>
+                <a href="about.php">About</a>
+                <!-- <a href="#">Help</a>
+                <a href="#">Terms</a> -->
             </div>
             <div class="footer-logo-container">
                 <h1>Find<span class="logo-color">NearMe</span></h1>
@@ -157,18 +193,24 @@
     <!-- full-page-menu -->
     <section id="full-page-menu" class="hide-menu">
         <div class="container full-page-menu-container">
-            <a href="#">Home</a>
-            <a href="#">Careers</a>
-            <a href="#">Contact</a>
-            <a href="#">About</a>
-            <a href="#">Login</a>
-            <a href="#">Register Now</a>
+            <a href="index.php">Home</a>
+            <!-- <a href="#">Careers</a> -->
+            <a href="contact.php">Contact</a>
+            <a href="about.php">About</a>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register Now</a>
             <div href="#" class="close-menu">&times;</div>
         </div>
     </section>
 
     <!-- script -->
     <script src="./js/script.js"></script>
+    <script src="./js/redirect_notification.js"></script>
+    <script>
+        document.querySelector('.current-year').textContent = (new Date()).getFullYear();
+    </script>
 
+    <!-- chat -->
+    <script src="./utilities/chat.js"></script>
 </body>
 </html>
