@@ -52,6 +52,26 @@
         return bin2hex(random_bytes(32));
     }
 
+    function time_difference($user_id): int {
+        global $connection;
+        // query to fetch notified_date_time of the specific logged in user
+        $sql = "SELECT notified_date_time FROM `notification` WHERE user_id=". $connection->escape_string($user_id) . " ORDER BY notified_date_time DESC LIMIT 1";
+        $query_data = $connection->query($sql);
+        $fetch_data = $query_data->fetch_assoc();
+
+        // find the difference
+        $datetime1 = new DateTime($fetch_data['notified_date_time']);
+        $datetime2 = new DateTime();
+
+        // intervals
+        $interval = $datetime1->diff($datetime2);
+        $minutes  = $interval->days * 24 * 60;
+        $minutes += $interval->h * 60;
+        $minutes += $interval->i;
+
+        return $minutes;
+    }
+
     function get_register_email_text(string $token) 
     {
         $html = <<<DEL

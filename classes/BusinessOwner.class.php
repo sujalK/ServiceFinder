@@ -1,20 +1,27 @@
 <?php 
 
-class RegularUser extends DbObject
+class BusinessOwner extends DbObject
 {
     // table name
     protected static $table_name = 'users';
 
     // columns
-    protected static $db_columns = ['id', 'first_name', 'last_name', 'email', 'hashed_password', 'user_role', 'is_verified', 'created_at', 'account_active_status', 'token'];
+    protected static $db_columns = ['id', 'first_name', 'last_name', 'email', 'hashed_password', 'user_role', 'is_verified', 'created_at', 'account_active_status', 'token', 'citizenship_file_front', 'citizenship_file_back'];
 
     // properties
     public $id, $first_name, $last_name, $email, $user_role, $is_verified, $created_at, $account_active_status, $token;
     public $hashed_password;
     public $password, $confirm_password;
+    public $citizenship_file_front;
+    public $citizenship_file_back;
 
+    /* 
+     * For business_owner,
+     * account_active_status = 0
+     * user_role             = business_owner
+    */
     // set up the properties initially
-    public function __construct($post = null, $created_at = null, $token = '', $user_role = 'regular_user', $is_verified = 0, $account_active_status = 1)
+    public function __construct($post = null, $created_at = null, $token = '', $citizenship_file_front = '', $citizenship_file_back = '', $user_role = 'business_owner', $is_verified = 0, $account_active_status = 1)
     {
         $this->first_name             = $post['first_name'] ?? '';
         $this->last_name              = $post['last_name'] ?? '';
@@ -22,6 +29,8 @@ class RegularUser extends DbObject
         $this->password               = $post['password'] ?? '';
         $this->confirm_password       = $post['confirm_password'] ?? '';
         $this->token                  = $token ?? '';
+        $this->citizenship_file_front = $citizenship_file_front ?? '';
+        $this->citizenship_file_back  = $citizenship_file_back ?? '';
         $this->created_at             = $created_at;
         $this->user_role              = $user_role;
         $this->is_verified            = $is_verified;

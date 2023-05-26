@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap');
+
+:root {
+    --delicious-handrawn: 'Delicious Handrawn', cursive;
+    --poppins-font: 'Poppins', sans-serif;
+}
+
+#top-section {
+    padding-bottom: 0;
+}
+
+
+/* font class */
+.register-font {
+    font-family: var(--delicious-handrawn);
+    margin-bottom: -8px;
+}
+
+/* liner class */
+.register-border-liner {
+    display: inline-block;
+    width: 95px;
+    height: 2px;
+    background-color: #4caf4f;
+}
+
+/* registration-form */
+.registration-form {
+    margin-top: 1.25rem;
+}
+
+.registration-form .two-col-div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.registration-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin: .5rem 0;
+}
+
+.registration-form .form-group label {
+    padding-bottom: .25rem;
+    font-family: 'Bellota Text', cursive;
+    font-weight: bold;
+}
+
+.registration-form .form-group input[type="text"],
+.registration-form .form-group input[type="email"],
+.registration-form .form-group input[type="password"] {
+    padding: .25rem .2rem;
+    font-size: 1rem;
+    font-family: var(--poppins-font);
+    outline: none;
+    font-family: 'Bellota Text', cursive;
+}
+
+.registration-form input[type="submit"] {
+    border: none;
+    background: #4caf4f;
+    color: #fff;
+    font-family: var(--poppins-font);
+    padding: .25rem 3rem;
+    font-size: 1.1rem;
+    margin-top: 1.25rem;
+    cursor: pointer;
+}
+
+/* for smaller devics */
+@media screen and (max-width: 500px) {
+    .registration-form .two-col-div {
+        grid-template-columns: 1fr;
+    }
+
+    .registration-form input[type="submit"] {
+        width: 100%;
+    }
+}

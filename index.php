@@ -1,3 +1,6 @@
+<?php require_once('./helpers/initialize.php'); ?>
+<?php include ROOT_PAGE . "/utilities/server/logout.php"; ?>
+<?php // echo $_SESSION['user_id']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" integrity="sha512-gOQQLjHRpD3/SEOtalVq50iDn4opLVup2TF8c4QPI3/NmUPNZOk2FG0ihi8oCU/qYEsw4P6nuEZT2lAG0UNYaw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/style.css">
     <title>Service finder | explore the best services/business around us</title>
 </head>
@@ -25,15 +29,30 @@
                 </div>
                 <!-- center-navigation -->
                 <div class="center-navigation">
-                    <a href="#">Home</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Contact</a>
-                    <a href="#">About</a>
+                    <a href="index.php">Home</a>
+                    <!-- <a href="#">Careers</a> -->
+                    <a href="contact.php">Contact</a>
+                    <a href="about.php">About</a>
                 </div>
                 <!-- right-buttons -->
                 <div class="right-buttons">
-                    <a href="#" class="login-btn">Log in</a>
-                    <a href="#" class="register-now-btn">Register Now</a>
+                    <!-- Only show the log in if the user is not logged in -->
+                    <?php if(empty($_SESSION['user_id'])): ?>
+                    <a href="login.php" class="login-btn">Log in</a>
+                    <?php else: ?>
+                    <!-- <div>
+                        <a href="#"><span class="lnr lnr-user"></span></a>
+                    </div> -->
+                    <div class="notification-bar">
+                        <span id="notification-bell" class="lnr lnr-alarm" style="font-size: 1.25rem"></span>
+                    </div>
+                    <?php echo '<a href="?logout"><span class="lnr lnr-exit"></span> Logout</a>' ?>
+                    <?php endif; ?>
+
+                    <!-- only show register button if the user is not logged in -->
+                    <?php if(empty($_SESSION['user_id'])): ?>
+                    <a href="register.php" class="register-now-btn">Register Now</a>
+                    <?php endif; ?>
                 </div>
                 <!-- hamburger menu -->
                 <div class="hamburger-menu">
@@ -47,31 +66,49 @@
                 <p>It's simple and smart</p>
                 <h2 class="font-2">Search, Explore and Experience</h2>
                 <div class="service-and-companies">
-                    <div class="services">
+                    <!-- <div class="services">
                         <div>
                             <span class="lnr lnr-file-empty"></span>
                         </div>
                         <p>2000,036 Services</p>
-                    </div>
+                    </div> -->
+                    <?php 
+                        // query to count total listings
+                        $sql = "SELECT COUNT(*) as total_listings FROM services";
+
+                        // count query
+                        $count_query = $connection->query($sql);
+
+                        $count = $count_query->fetch_assoc();
+                    ?>
                     <div class="companies">
                         <div>
                             <span class="lnr lnr-apartment"></span>
                         </div>
-                        <p>9,914 Companies</p>
+
+                        <!-- for single count of the listed service/business -->
+                        <?php if ($count['total_listings'] == 1): ?>
+                        <p><?php echo $count['total_listings']; ?> Listed service/business</p>
+                        <?php endif ?>
+
+                        <!-- for multiple count of the listed services/businesses -->
+                        <?php if ($count['total_listings'] > 1): ?>
+                        <p><?php echo $count['total_listings']; ?> Listed services/businesses</p>
+                        <?php endif ?>
+
                     </div>
                 </div>
             </div>
             <!-- search-form-container -->
-            <form action="" method="post" class="search-form">
-
+            <form action="search_results.php" method="get" class="search-form" id="search-form">
                 <div class="form-group service-search">
-                    <label for="keyword"><i class="lnr lnr-pencil"></i></label>
-                    <input type="text" name="keyword" id="keyword" placeholder="Search service here...">
+                    <label for="service_name"><i class="lnr lnr-pencil"></i></label>
+                    <input type="text" name="search_service" id="service_name" placeholder="Search service here...">
                 </div>
                 <div class="wrapper-form-group">
                     <div class="form-group">
                         <label for="place_entry"><i class="lnr lnr-location"></i></label>
-                        <input type="text" name="place_entry" id="place_entry" placeholder="Place/City search...">
+                        <input type="text" name="search_place" id="place_entry" placeholder="Place/City search...">
                     </div>
                     <input type="submit" value="Search" class="search-btn">
                 </div>
@@ -141,7 +178,7 @@
             <div class="text-div">
                 <h1>Register here</h1>
                 <p>Please click the buttotn below to proceed the work further</p>
-                <a href="#" class="btn-primary mt-1 register-btn-utility">Register</a>
+                <a href="registration.php" class="btn-primary mt-1 register-btn-utility">Register</a>
             </div>
         </div>
     </section>
@@ -149,11 +186,11 @@
     <!-- footer -->
     <footer>
         <div class="container footer-container">
-            <div class="copyright-text">&copy; 2022, All rights reserved.</div>
+            <div class="copyright-text">&copy; <span class="current-year"></span>, All rights reserved.</div>
             <div class="links-group">
-                <a href="#">About</a>
-                <a href="#">Help</a>
-                <a href="#">Terms</a>
+                <a href="about.php">About</a>
+                <!-- <a href="#">Help</a>
+                <a href="#">Terms</a> -->
             </div>
             <div class="footer-logo-container">
                 <h1>Find<span class="logo-color">NearMe</span></h1>
@@ -164,17 +201,62 @@
     <!-- full-page-menu -->
     <section id="full-page-menu" class="hide-menu">
         <div class="container full-page-menu-container">
-            <a href="#">Home</a>
-            <a href="#">Careers</a>
-            <a href="#">Contact</a>
-            <a href="#">About</a>
-            <a href="#">Login</a>
-            <a href="#">Register Now</a>
+            <a href="index.php">Home</a>
+            <!-- <a href="#">Careers</a> -->
+            <a href="contact.php">Contact</a>
+            <a href="about.php">About</a>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register Now</a>
             <div href="#" class="close-menu">&times;</div>
         </div>
     </section>
 
     <!-- script -->
     <script src="./js/script.js"></script>
+    <script src="./js/redirect_notification.js"></script>
+
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- for the logout feature -->
+    <script>
+        <?php // $message = $_SESSION['log_out_info']; ?>
+        // for logout alert
+        <?php // if(isset($_SESSION['log_out_info'])): ?>
+            // Swal.fire(
+            //     'Logout',
+            //     '<?php // echo $message; ?>',
+            //     'success'
+            // );
+        <?php // endif; ?>
+    </script>
+
+    <!-- validate_input -->
+    <script src="./js/validate_input.js"></script>
+
+    <!-- show alert for login -->
+    <script>
+        <?php if(isset($_SESSION['user_role']) && !empty($_SESSION['user_role']) && $_SESSION['user_role'] == 'regular_user'): ?>
+
+        <?php if (isset($_SESSION['regular_user_role'])): ?>
+            Swal.fire(
+                'Login',
+                '<?php echo $_SESSION['regular_user_role']; ?>',
+                'success'
+            );
+        
+        <?php unset($_SESSION['regular_user_role']); ?>
+        <?php endif; ?>
+
+        <?php endif; ?>
+    </script>
+
+    <script>
+        document.querySelector('.current-year').textContent = (new Date()).getFullYear();
+    </script>
+
+    <!-- chat -->
+    <script src="./utilities/chat.js"></script>
 </body>
 </html>
+<?php // if(isset($_SESSION['log_out_info'])) unset($_SESSION['log_out_info']); ?>

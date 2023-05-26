@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
+:root {
+    --maven-font: 'Maven Pro', sans-serif;;
+}
+
+/* fonts */
+.maven-font {
+    font-family: var(--maven-font);
+}
+
+#top-section {
+    padding-bottom: 0;
+}
+
+.badge {
+    font-size: .85rem;
+    display: inline-block;
+    padding: .25rem 1.25rem;
+    margin: .75rem 0;
+    border-radius: 20px;
+    color: #fff;
+    font-family: 'Noto Sans', sans-serif;
+    text-transform: capitalize;
+}
+
+.badge-verified {
+    color: #155724;
+    background: #d4edd9;
+}
+
+/* profile */
+.profile-form {
+    margin-top: 1.25rem;
+}
+
+.profile-form .form-group {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 0;
+}
+
+.profile-form .form-group label {
+    padding-bottom: .25rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.profile-form .form-group input[type="text"], 
+.profile-form .form-group input[type="password"],
+.profile-form .form-group input[type="email"] {
+    padding: .25rem 0;
+    border: none;
+    border-bottom: 1px solid #959191;
+    font-size: 1.1rem;
+    font-family: var(--maven-font);
+    outline: none;
+}
+
+.profile-form button[type="submit"] {
+    display: inline-block;
+    margin-top: 1.25rem;
+    background: #4caf4f;
+    color: #fff;
+    padding: .5rem .75rem;
+    font-family: var(--maven-font);
+    cursor: pointer;
+    transition: .2s all;
+}
+
+.profile-form button[type="submit"]:hover {
+    background: #dce35b; 
+    background: -webkit-linear-gradient(to right, #dce35b, #45b649);
+    background: linear-gradient(to right, #dce35b, #45b649);
+}
+
+/* for smaller devices */
+@media screen and (max-width: 500px) {
+    .profile-form button[type="submit"] {
+        display: block;
+        width: 100%;
+    }
+}
