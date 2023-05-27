@@ -71,7 +71,6 @@ if (isset($_SESSION['user_id'])) {
     $user_check_datas = $user_check_query->fetch_assoc();
 }
 
-
 // vote/reviews POST
 if (
     is_post() && 
@@ -89,9 +88,8 @@ if (
     // if there is no vote and review text given, don't post it
     if (!empty($vote) && !empty($review_text)) {
         // check to see if the same user has already posted review
-        $sql          = "SELECT user_id FROM vote_and_reviews WHERE user_id = ". $connection->escape_string($_SESSION['user_id']) . " LIMIT 1";
+        $sql          = "SELECT user_id FROM vote_and_reviews WHERE user_id = ". $connection->escape_string($_SESSION['user_id']) . " AND service_id={$service_id} LIMIT 1";
         $vote_user_id = $connection->query($sql);
-
 
         // check to see if the user is regular_user
         if ($user_check_datas['user_role'] == 'regular_user') {
@@ -136,7 +134,56 @@ if (
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/notification.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" integrity="sha512-gOQQLjHRpD3/SEOtalVq50iDn4opLVup2TF8c4QPI3/NmUPNZOk2FG0ihi8oCU/qYEsw4P6nuEZT2lAG0UNYaw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- for map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
     <title>Service finder | explore the best services/business around us</title>
+    <style>
+
+        #map-container {
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* align-items: center; */
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        .show-map {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #map {
+            /* max-width: 80%; */
+            width: 100%;
+            height: 100%;
+            /* height: 500px; */
+        }
+
+        /* div: service-images */
+        .service-images div {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 2.25rem 0;
+        }
+
+        /* for smaller device */
+        @media screen and (max-width: 500px) {
+            .service-images div {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -198,7 +245,7 @@ if (
             <!-- <div class="service-title-bar">
                 <p class="service-title open-sans font-3x line-h-1">Book Store Near Putalisadak</p>
             </div> -->
-            <div class="service-hero-image" style="background: url('./images/why-choose.webp') center center/cover;">
+            <div class="service-hero-image" style="background: url('<?php echo $fetched_data['hero_image']; ?>') center center/cover;">
                 <div class="service-text-container p-1">
                     <p class="service-title open-sans font-3x">
                         <?php echo $fetched_data['service_name']; ?>
@@ -207,7 +254,12 @@ if (
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, amet!
                     </div> -->
                     <p class="open-sans m-1-2">Open hours - <span class="pill"><?php echo $fetched_data['open_hours']; ?></span></p>
-                    <p>Active Status: <span class="pill"><?php echo $fetched_data['is_open'] == 1 ? 'Yes': 'No'; ?></span></p>
+                    <?php if ($fetched_data['is_open'] == 1): ?>
+                        <p>Is Open Now ? <span class="pill"><span>Yes</span></span></p>
+                    <?php endif; ?>
+                    <?php if ($fetched_data['is_open'] == 0): ?>
+                    <span style="background: #ec4560; color: #fff; padding: .25rem 0 .25rem 0">Is Open Now ?  <span style="color: #fff; font-weight: bold;">No</span><p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -252,11 +304,44 @@ if (
                 <span>Mobile numbers: </span><span class="pill"><?php echo $fetched_data['mobile_numbers']; ?></span>
                 <span>Landline numbers: </span><span class="pill"><?php echo $fetched_data['landline_numbers']; ?></span>
             </div>
+            <!-- images -->
+            <div class="service-images">
+                <div>
+                    <?php 
+                        // get the images
+                        $image_paths  = preg_split('/,/', $fetched_data['images']);
+                        foreach($image_paths as $image) {
+                            echo "<a class='fancybox' data-fancybox='gallery' href='{$image}'><img src='{$image}'></a>";
+                        }
+                    ?>
+                </div>
+            </div>
+            <?php if (!empty($fetched_data['lat']) && !empty($fetched_data['lng'])): ?>
+            <!-- map -->
+            <span href="#" class="show-map">Show Map <i class="lnr lnr-map-marker" style="font-size: 25px;"></i></span>
+            <div id="map-container">
+                <div id="map"></div>
+            </div>
+            <?php endif; ?>
+
+            <!-- certifications -->
+            <div class="certifications">
+                <h2 style="margin: 1.25rem 0;">Certifications links</h2>
+                <?php 
+                    // get certificats if there is any
+                    $certificates = preg_split('/,/', $fetched_data['certification_images']);
+                    foreach ($certificates as $cert) {
+                        echo "<span style=\"display: inline-block; margin: .75rem 0;\" class='underline'><a target=\"_blank\" href=\"{$cert}\">{$cert}</a></span>&nbsp;&nbsp;<i class=\"lnr lnr-checkmark-circle\" style=\"color: green; font-weight: bold;\"></i><br />";
+                    }
+                ?>
+                <a href=""></a>
+            </div>
+
         </div>
     </section>
     
     <?php if (isset($_SESSION['user_id']) && isset($user_check_datas['user_role']) && $user_check_datas['user_role'] == 'regular_user'): ?>
-
+    <?php // if($vote_user_id->num_rows == 0): ?>
     <!-- Section: review-vote -->
     <section id="review-and-vote">
         <div class="container review-and-vote-container">
@@ -280,7 +365,7 @@ if (
             </form>
         </div>
     </section>
-
+    <?php // endif; ?>
     <?php endif; ?>
 
     <!-- section: reviews -->
@@ -290,7 +375,7 @@ if (
             <?php 
 
                 // sql to query the vote of a specific user.
-                $sql = "SELECT vote, review, user_id, service_id, approved, first_name, last_name FROM vote_and_reviews vr JOIN users u ON u.id = vr.user_id WHERE service_id = ". $connection->escape_string($service_id);
+                $sql = "SELECT vote, review, user_id, service_id, approved, first_name, last_name FROM vote_and_reviews vr JOIN users u ON u.id = vr.user_id WHERE service_id = ". $connection->escape_string($service_id) ." AND approved = 1";
                 
                 // query
                 $vote_and_review = $connection->query($sql);
@@ -401,5 +486,59 @@ if (
 
     <!-- chat -->
     <script src="./utilities/chat.js"></script>
+    
+    <!-- fancybox -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script>
+        $('.fancybox').fancybox();
+    </script>
+
+    <?php 
+        if (!empty($fetched_data['lat']) && !empty($fetched_data['lng'])) {
+            $latitude = $fetched_data['lat'];
+            $longitude = $fetched_data['lng'];
+        }
+    ?>
+    <!-- for map -->
+    <script>
+        // map instance
+        var map = L.map('map').setView([0, 0], 2);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // add marker wherever we are
+        const marker = L.marker([0, 0]).addTo(map);
+
+        // set latitude and longitude
+        marker.setLatLng([<?php echo $latitude; ?>, <?php echo $longitude; ?>]).update();
+
+        // set up the view to make it a zoom
+        map.setView([<?php echo $latitude; ?>, <?php echo $longitude; ?>], 20);
+
+        // add a popup
+        marker.bindPopup('<strong><?php echo shorten($fetched_data['service_name'], 40); ?></strong><br /><?php echo $fetched_data['primary_address']; ?>');
+
+        // open popup by default
+        marker.openPopup();
+    </script>
+
+    <!-- for show map -->
+    <script>
+        document.querySelector(".show-map").addEventListener("click", () => {
+            document.querySelector("#map-container").style = 'visibility: visible';
+        });
+
+        // add event listener for hide
+        document.addEventListener("keydown", e => {
+            if (e.key === 'Escape') {
+                document.querySelector("#map-container").style = 'visibility: hidden';
+            }
+        });
+
+    </script>
 </body>
 </html>

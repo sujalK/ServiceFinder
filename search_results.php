@@ -15,6 +15,20 @@ if (is_get()) {
             $place_to_search = sanitize($_GET['search_place']);
 
             // query to fetch the required data
+            // $sql = <<<D
+            // SELECT * FROM services WHERE ( 
+            //     MATCH(service_name) AGAINST('{$connection->escape_string($service)}' IN NATURAL LANGUAGE MODE) 
+            //     OR 
+            //     MATCH(about_description) AGAINST('{$connection->escape_string($service)}' IN NATURAL LANGUAGE MODE) 
+            //     OR 
+            //     MATCH (primary_address) AGAINST('{$connection->escape_string($place_to_search)}' IN NATURAL LANGUAGE MODE) 
+            //     OR 
+            //     MATCH (secondary_address) AGAINST('{$connection->escape_string($place_to_search)}' IN NATURAL LANGUAGE MODE)
+            //     OR 
+            //     MATCH (nearby_popular_destination) AGAINST('{$connection->escape_string($place_to_search)}' IN NATURAL LANGUAGE MODE)
+            // ) AND is_verified = 1 
+            // D;
+
             $sql = <<<D
             SELECT * FROM services WHERE ( 
                 MATCH(service_name) AGAINST('{$connection->escape_string($service)}' IN NATURAL LANGUAGE MODE) 
@@ -26,7 +40,7 @@ if (is_get()) {
                 MATCH (secondary_address) AGAINST('{$connection->escape_string($place_to_search)}' IN NATURAL LANGUAGE MODE)
                 OR 
                 MATCH (nearby_popular_destination) AGAINST('{$connection->escape_string($place_to_search)}' IN NATURAL LANGUAGE MODE)
-            ) AND is_verified = 1
+            ) AND is_verified = 1 AND service_name LIKE '%{$connection->escape_string($service)}%' OR tags LIKE '%{$connection->escape_string($service)}%'
             D;
 
             // execute the query
@@ -128,8 +142,8 @@ if (is_get()) {
     <div id="search-results-container">
         <div class="container search-results-container">
             <div class="top-count-display">
-                <p class="ml-2 results-text">Results (<?php echo $row_count; ?>)</p>
-                <?php if ($row_count === 0): ?> <p class="ml-2"> <?php echo 'Sorry, no match found.'; ?> </p> <?php endif; ?>
+                <p class="ml-2 results-text" style="text-decoration: underline;">Results (<?php echo $row_count; ?>)</p>
+                <?php if ($row_count === 0): ?> <p class="ml-2" style="color: red;"> <?php echo 'Sorry, no match found.'; ?> </p> <?php endif; ?>
             </div>
             <div class="results-container">
                 <?php while ($row = $search_query->fetch_assoc()): ?>           
@@ -138,7 +152,7 @@ if (is_get()) {
                             <img src="<?php echo $row['hero_image']; ?>" alt="">
                         </div>
                         <div class="search-text-container">
-                            <p class="service-name">Book Store finder</p>
+                            <p class="service-name"><?php echo $row['service_name'] ?></p>
                             <p class="short-description">
                                 <?php echo shorten($row['about_description'], 250) . "..." ?>
                             </p>

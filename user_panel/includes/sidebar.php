@@ -14,6 +14,17 @@
                         </div>
                         <div class="menu-text">Overview</div>
                     </a>
+
+                    <!-- for business owner to approve the review -->
+                    <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'business_owner'): ?>
+                    <a href="reviews.php" class="item">
+                        <div class="menu-icon">
+                            <i class="fa fa-book"></i>
+                        </div>
+                        <div class="menu-text">Review(s)</div>
+                    </a>
+                    <?php endif; ?>
+
                     <a href="#" class="item product-menu">
                         <div class="menu-icon">
                             <i class="fa fa-shopping-basket"></i>
