@@ -51,6 +51,21 @@
             }
         }
 
+
+        // for open service
+        if (isset($_GET['open_service'])) {
+            $open_service = sanitize($_GET['open_service']);
+            $sql          = "UPDATE services SET is_open = 1 WHERE id=". $connection->escape_string($open_service);
+            $connection->query($sql);
+        }
+
+        // for close service
+        if (isset($_GET['close_service'])) {
+            $open_service = sanitize($_GET['close_service']);
+            $sql          = "UPDATE services SET is_open = 0 WHERE id=". $connection->escape_string($open_service);
+            $connection->query($sql);
+        }
+
     ?>
 
     <!-- section: brand -->
@@ -78,6 +93,8 @@
                             <th>Primary address</th>
                             <th>Secondary address</th>
                             <th>Is verified</th>
+                            <th>Open/Close</th>
+                            <th>Location</th>
                             <?php if ($_SESSION['user_role'] == 'admin'): ?>
                             <th>Options</th>
                             <?php endif; ?>
@@ -90,10 +107,10 @@
 
                             if ($_SESSION['user_role'] === 'business_owner') {
                                 // sql query to fetch own services of the business owner
-                                $sql   = "SELECT s.id as service_id, `service_name`, s.is_verified as is_verified, `email`, `mobile_numbers`, `landline_numbers`, `address`, `primary_address`, `secondary_address`  FROM services s JOIN users u ON u.id = s.user_id WHERE s.user_id=". $_SESSION['user_id'];
+                                $sql   = "SELECT is_open, s.id as service_id, `service_name`, s.is_verified as is_verified, `email`, `mobile_numbers`, `landline_numbers`, `address`, `primary_address`, `secondary_address`  FROM services s JOIN users u ON u.id = s.user_id WHERE s.user_id=". $_SESSION['user_id'];
                             } else if ($_SESSION['user_role'] === 'admin') {
                                 // to fetch all services of each users (to show to the admin)
-                                $sql = "SELECT s.id as service_id, `service_name`, s.is_verified as is_verified, `email`, `mobile_numbers`, `landline_numbers`, `address`, `primary_address`, `secondary_address`  FROM services s JOIN users u ON u.id = s.user_id";
+                                $sql = "SELECT is_open, s.id as service_id, `service_name`, s.is_verified as is_verified, `email`, `mobile_numbers`, `landline_numbers`, `address`, `primary_address`, `secondary_address`  FROM services s JOIN users u ON u.id = s.user_id";
                             }
 
                             $query = $connection->query($sql);
@@ -111,6 +128,16 @@
                             <td><?php echo $row['primary_address']; ?></td>
                             <td><?php echo $row['secondary_address']; ?></td>
                             <td><?php echo $row['is_verified'] == 1 ? '<span style="color: #fff; background: #4caf4f; border-radius: 5px; padding: 5px; font-size: .75rem;">verified</span>' : '<span style="color: #fff; background: #ec4560; border-radius: 5px; padding: 5px; font-size: .5rem;">un-verified</span>'; ?></td>
+                            <td><?php echo $row['is_open'] == 1 ? '<a class=\'underline\' href="?close_service='. $row['service_id'] .'">Close ?</a>' : '<a class=\'underline\' href="?open_service='. $row['service_id'] .'">Open ?</a>'; ?></td>
+                            <td>
+                                <div class="loc-update" id="<?php echo $row['service_id']; ?>">
+                                    <!-- <form action="">
+                                        <input type="text" class="lat-value">
+                                        <input type="text" class="lng-value">
+                                    </form> -->
+                                    <a href="#" class="underline update-location-link">Update Loc</a>
+                                </div>
+                            </td>
                             <td class="options">
                                 <!-- Only show the options to modify service options to the admin -->
                                 <?php if ($_SESSION['user_role'] == 'admin'): ?>
@@ -140,5 +167,8 @@
 
     <!-- script -->
     <script src="./assets/js/script.js"></script>
+
+    <!-- script for update location -->
+    <script src="../js/update_location.js"></script>
 </body>
 </html>

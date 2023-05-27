@@ -17,9 +17,11 @@
 
                     // sql to fetch all of the active services count (for admin)
                     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
-                        $sql = "SELECT COUNT(*) as active_services FROM services WHERE service_active_status = 1";
+                        // $sql = "SELECT COUNT(*) as active_services FROM services WHERE service_active_status = 1";
+                        $sql = "SELECT COUNT(*) as active_services FROM services WHERE is_verified = 1 AND service_active_status = 1";
                     } else {
-                        $sql = "SELECT COUNT(*) as active_services FROM services WHERE service_active_status = 1 AND user_id = ". $connection->escape_string($_SESSION['user_id']);
+                        // $sql = "SELECT COUNT(*) as active_services FROM services WHERE service_active_status = 1 AND user_id = ". $connection->escape_string($_SESSION['user_id']);
+                        $sql = "SELECT COUNT(*) as active_services FROM services WHERE (is_verified = 1 AND service_active_status = 1) AND user_id = ". $connection->escape_string($_SESSION['user_id']);
                     }
 
                     $active_accounts = $connection->query($sql);
