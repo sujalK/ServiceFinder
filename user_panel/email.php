@@ -1,3 +1,4 @@
+<?php require_once dirname(__DIR__) . '/helpers/credentials.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
