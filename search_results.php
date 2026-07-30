@@ -40,7 +40,7 @@ if (is_get()) {
                 MATCH (secondary_address) AGAINST('{$connection->escape_string($place_to_search)}' IN NATURAL LANGUAGE MODE)
                 OR 
                 MATCH (nearby_popular_destination) AGAINST('{$connection->escape_string($place_to_search)}' IN NATURAL LANGUAGE MODE)
-            ) AND is_verified = 1 AND service_name LIKE '%{$connection->escape_string($service)}%' OR tags LIKE '%{$connection->escape_string($service)}%'
+            ) AND (is_verified = 1) AND (service_name LIKE '%{$connection->escape_string($service)}%' OR tags LIKE '%{$connection->escape_string($service)}%')
             D;
 
             // execute the query
