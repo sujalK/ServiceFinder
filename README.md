@@ -22,7 +22,7 @@ The website is also branded as **FindNearMe** in parts of the user interface.
 
 ## Technology used
 
-- PHP 8 or newer
+- PHP
 - MySQL / MariaDB
 - Apache (XAMPP is suitable for local development)
 - HTML, CSS, and JavaScript
